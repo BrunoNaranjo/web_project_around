@@ -8,14 +8,19 @@ let inpName = document.querySelector(".popup__input_name");
 let inpAbout = document.querySelector(".popup__input_about");
 
 function openEdit() {
-    inpName.value = inName.textContent;
-    inpAbout.value = inAbout.textContent;
-    popup.classList.add("popup_opened");
-}
-
-function closeEdit() {
-    popup.classList.remove("popup_opened");
+  inpName.value = inName.textContent;
+  inpAbout.value = inAbout.textContent;
+  popup.classList.toggle("popup_opened");
 }
 
 butEdit.addEventListener("click", openEdit);
-butClose.addEventListener("click", closeEdit);
+butClose.addEventListener("click", openEdit);
+
+function saveChange(e) {
+  e.preventDefault();
+  inName.textContent = inpName.value;
+  inAbout.textContent = inpAbout.value;
+  openEdit();
+}
+
+form.addEventListener("submit", saveChange);
